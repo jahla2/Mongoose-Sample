@@ -40,6 +40,32 @@ const person = new Person({
 //save to database
 // person.save();
 
+//add Many Fruits | B U L K
+const kiwi = new Fruit({
+    name: "Kiwi",
+    score: 10,
+    review: "The Best fruit!"
+});
+const orange = new Fruit({
+    name: "orange",
+    score: 4,
+    review: "Too sour for me"
+});
+const banana = new Fruit({
+    name: "banana",
+    score: 3,
+    review: "Weired texture"
+});
+
+Fruit.insertMany([kiwi, orange, banana], function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Successfully Save to FruitsDB");
+    }
+});
+
+
 
 
 
