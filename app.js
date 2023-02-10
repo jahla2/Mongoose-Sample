@@ -71,7 +71,8 @@ Fruit.find(function (err, fruits) {
     if (err) {
         console.log(err);
     } else {
-        console.log(fruits);
+        //Close Connection after code exucution
+        mongoose.connection.close();
         //Loop to fruits JSON
         fruits.forEach(function (fruit) {
             //Display the name of the fruits
