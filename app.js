@@ -23,6 +23,24 @@ const fruit = new Fruit({
 //Save document to fruits collection in fruitsDB
 // fruit.save();
 
+//Create new Collection of People
+const peopleSchema = new mongoose.Schema({
+    name: String,
+    age: Number
+});
+
+//Create Model
+const Person = mongoose.model("Person", peopleSchema);
+
+//Create a new Person
+const person = new Person({
+    name: "Reynand",
+    age: 21
+});
+//save to database
+// person.save();
+
+
 
 
 
