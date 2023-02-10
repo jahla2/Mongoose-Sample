@@ -57,11 +57,26 @@ const banana = new Fruit({
     review: "Weired texture"
 });
 
-Fruit.insertMany([kiwi, orange, banana], function (err) {
+// Fruit.insertMany([kiwi, orange, banana], function (err) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log("Successfully Save to FruitsDB");
+//     }
+// });
+
+
+//READ TO OUR DATABASE
+Fruit.find(function (err, fruits) {
     if (err) {
         console.log(err);
     } else {
-        console.log("Successfully Save to FruitsDB");
+        console.log(fruits);
+        //Loop to fruits JSON
+        fruits.forEach(function (fruit) {
+            //Display the name of the fruits
+            console.log(fruit.name);
+        });
     }
 });
 
@@ -70,8 +85,7 @@ Fruit.insertMany([kiwi, orange, banana], function (err) {
 
 
 
-
-//Validation to Database
+//Validation to Database Connection
 const db = mongoose.connection;
 db.on("error", (error) => console.log(error));
 db.once("open", () => console.log("DB Connected"));
