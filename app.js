@@ -29,7 +29,7 @@ const fruit = new Fruit({
     review: "Peaches are so yummy!"
 });
 //Save document to fruits collection in fruitsDB
-fruit.save();
+// fruit.save();
 
 //Create new Collection of People
 const peopleSchema = new mongoose.Schema({
@@ -74,7 +74,7 @@ const person = new Person({
 // });
 
 
-//READ TO OUR DATABASE
+//READ TO  DATABASE
 Fruit.find(function (err, fruits) {
     if (err) {
         console.log(err);
@@ -86,6 +86,16 @@ Fruit.find(function (err, fruits) {
             //Display the name of the fruits
             console.log(fruit.name);
         });
+    }
+});
+
+
+//UPDATE TO DATABASE
+Fruit.updateOne({ _id: "63e6f51f68b29ad8b0e97be7" }, { name: "Peach" }, function (err) {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log("Successfully Updated the document.");
     }
 });
 
