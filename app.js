@@ -22,31 +22,12 @@ const fruitSchema = new mongoose.Schema({
 
 //Use shema to create mongoose model
 const Fruit = mongoose.model("Fruit", fruitSchema);
-//Create Model
+//Create new Record fruits 
 const fruit = new Fruit({
     // name: "Apple",
     rating: 10,
     review: "Peaches are so yummy!"
 });
-//Save document to fruits collection in fruitsDB
-// fruit.save();
-
-//Create new Collection of People
-const peopleSchema = new mongoose.Schema({
-    name: String,
-    age: Number
-});
-
-//Create Model
-const Person = mongoose.model("Person", peopleSchema);
-
-//Create a new Person
-const person = new Person({
-    name: "Reynand",
-    age: 21
-});
-//save to database
-// person.save();
 
 //add Many Fruits | B U L K
 // const kiwi = new Fruit({
@@ -65,6 +46,9 @@ const person = new Person({
 //     review: "Weired texture"
 // });
 
+//Save document to fruits collection in fruitsDB
+// fruit.save();
+
 // Fruit.insertMany([kiwi, orange, banana], function (err) {
 //     if (err) {
 //         console.log(err);
@@ -72,6 +56,26 @@ const person = new Person({
 //         console.log("Successfully Save to FruitsDB");
 //     }
 // });
+
+
+
+//Create new Collection of People
+const peopleSchema = new mongoose.Schema({
+    name: String,
+    age: Number
+});
+
+//Create Model
+const Person = mongoose.model("Person", peopleSchema);
+
+//Create a new Person
+const person = new Person({
+    name: "Reynand",
+    age: 21
+});
+//save to database
+person.save();
+
 
 
 //READ TO  DATABASE
@@ -91,11 +95,30 @@ Fruit.find(function (err, fruits) {
 
 
 //UPDATE TO DATABASE
-Fruit.updateOne({ _id: "63e6f51f68b29ad8b0e97be7" }, { name: "Peach" }, function (err) {
+// Fruit.updateOne({ _id: "63e6f51f68b29ad8b0e97be7" }, { name: "Peach" }, function (err) {
+//     if (err) {
+//         console.log(err)
+//     } else {
+//         console.log("Successfully Updated the document.");
+//     }
+// });
+
+
+//DELETE RECORD TO DATABASE
+// Fruit.deleteOne({ _id: "63e6f51f68b29ad8b0e97be7" }, function (err) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log("Successfully Deleted in Database.");
+//     }
+// });
+
+//DELETE MANY
+Person.deleteMany({ name: "Reynand" }, function (err) {
     if (err) {
-        console.log(err)
+        console.log(err);
     } else {
-        console.log("Successfully Updated the document.");
+        console.log("Succesfully Deleted all the document.");
     }
 });
 
