@@ -6,9 +6,17 @@ mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://127.0.0.1:27017/fruitsDB');
 
 //Inset Data to database | structure of data using schema
+//Adding Data Validation to name field
 const fruitSchema = new mongoose.Schema({
-    name: String,
-    rating: Number,
+    name: {
+        type: String,
+        required: [true, "Please check your data entry no name specified."]
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 });
 
@@ -16,12 +24,12 @@ const fruitSchema = new mongoose.Schema({
 const Fruit = mongoose.model("Fruit", fruitSchema);
 //Create Model
 const fruit = new Fruit({
-    name: "Apple",
-    rating: 7,
-    review: "Pretty Solid as a fruit."
+    // name: "Apple",
+    rating: 10,
+    review: "Peaches are so yummy!"
 });
 //Save document to fruits collection in fruitsDB
-// fruit.save();
+fruit.save();
 
 //Create new Collection of People
 const peopleSchema = new mongoose.Schema({
@@ -41,21 +49,21 @@ const person = new Person({
 // person.save();
 
 //add Many Fruits | B U L K
-const kiwi = new Fruit({
-    name: "Kiwi",
-    score: 10,
-    review: "The Best fruit!"
-});
-const orange = new Fruit({
-    name: "orange",
-    score: 4,
-    review: "Too sour for me"
-});
-const banana = new Fruit({
-    name: "banana",
-    score: 3,
-    review: "Weired texture"
-});
+// const kiwi = new Fruit({
+//     name: "Kiwi",
+//     score: 10,
+//     review: "The Best fruit!"
+// });
+// const orange = new Fruit({
+//     name: "orange",
+//     score: 4,
+//     review: "Too sour for me"
+// });
+// const banana = new Fruit({
+//     name: "banana",
+//     score: 3,
+//     review: "Weired texture"
+// });
 
 // Fruit.insertMany([kiwi, orange, banana], function (err) {
 //     if (err) {
@@ -80,6 +88,8 @@ Fruit.find(function (err, fruits) {
         });
     }
 });
+
+
 
 
 
