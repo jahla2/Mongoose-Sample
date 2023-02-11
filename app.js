@@ -58,23 +58,41 @@ const fruit = new Fruit({
 // });
 
 
-
 //Create new Collection of People
-const peopleSchema = new mongoose.Schema({
+//Establishing relationship and Embedding documents
+const personSchema = new mongoose.Schema({
     name: String,
-    age: Number
+    age: Number,
+    favorateFruit: fruitSchema
 });
 
 //Create Model
-const Person = mongoose.model("Person", peopleSchema);
+const Person = mongoose.model("Person", personSchema);
+//Create a fruit for Embedding to person
+const mango = new Fruit({
+    name: "mango",
+    score: 6,
+    review: "Decent fruit."
+});
+
+mango.save();
+//Update Person to add FruitFavorate field
+Person.updateOne({ _id: "63e7901dbcdac87e302d4874" }, { favorateFruit: mango }, function (err) {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log("Successfully Updated the document.");
+    }
+});
 
 //Create a new Person
-const person = new Person({
-    name: "Reynand",
-    age: 21
-});
+// const person = new Person({
+//     name: "Amy",
+//     age: 12,
+//     favorateFruit: pineapple
+// });
 //save to database
-person.save();
+// person.save();
 
 
 
@@ -114,13 +132,13 @@ Fruit.find(function (err, fruits) {
 // });
 
 //DELETE MANY
-Person.deleteMany({ name: "Reynand" }, function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log("Succesfully Deleted all the document.");
-    }
-});
+// Person.deleteMany({ name: "Reynand" }, function (err) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log("Succesfully Deleted all the document.");
+//     }
+// });
 
 
 
